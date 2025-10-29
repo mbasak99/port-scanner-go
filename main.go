@@ -14,14 +14,16 @@ func main() {
 	// May return true based on if a process is using one of the above ports.
 	for _, portNum := range ports {
 		open := port.ScanPort("tcp", "localhost", portNum)
-		fmt.Printf("Port state: %v | Port: %d\n", open.State, open.Port)
+		fmt.Printf("Port state: %v | Port: %s\n", open.State, open.Port)
 	}
 	// Should always return true
 	open := port.ScanPort("tcp", "google.com", 80)
-	fmt.Printf("Port state: %v | Port: %d\n", open.State, open.Port)
+	fmt.Printf("Port state: %v | Port: %s\n", open.State, open.Port)
 
 	// Scan ports 1-1024
 	fmt.Println("Scanning for process on ports 1-1024...")
-	initScan := port.InitialScan("localhost")
+	initScan := port.InitialScan("localhost", 1024)
+	// scan all tcp and udp ports
+	// initScan := port.InitialScan("localhost", 65535)
 	fmt.Println(initScan)
 }
