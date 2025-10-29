@@ -11,5 +11,9 @@ I know TCP is used for network calls in REST APIs. HTTP is 80 and HTTPS is 443. 
 
 Checking all the ports definitely makes it take some time, even on my Ryzen 9 9900X :skull:. I want to see if using Go threads would speed this process up. Gonna time both.
 
+So after implementing multi-threading in Go for this I've found some interesting results. When scanning ports 1-2024 it was a toss up on whether multi-threading had any benefit, the results would range from 0.8x (multi-threading is faster) to 1.64x (multi-threading is slower). Where the multi-threading really shines is the 1-65535 test. It *always* beat the single-threaded logic, and would handly beat it too, from 0.16x to 0.3x.
+
+While goroutines are lightweight and easy to spawn, it isn't a zero-cost feature. You really have to think about using when you're working with large numbers. Overall this was a pretty neat experiment, was interesting learning a little about using the Dial function and understanding how it works over the ports of a given device, also learned how to implement and debate when to integrate multi-threading :+1:.
+
 # Steps to run this project
 `go run main.go`
