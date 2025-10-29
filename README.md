@@ -5,7 +5,8 @@ I've wanted to properly learn about networking and how things work when you make
 I know TCP is used for network calls in REST APIs. HTTP is 80 and HTTPS is 443. No real knowledge or understanding beyond that as of now.
 
 # Reflection Post Project
-TODO!
+- `ScanPort` function essentially checks what port is actively being used at the moment. When I first implemented this I didn't realize it'll only return true if there's an active process on a given port. Which is why the call to google.com worked when all my other ports failed. After starting a basic http server on port 3001 did I get a true back.
+- `InitialScan` function leverages the previously created function and reuses the logic to check ports 1-1024. Pretty straightforward.
 
 # Steps to run this project
-`go run src/main.go`
+`go run main.go`
